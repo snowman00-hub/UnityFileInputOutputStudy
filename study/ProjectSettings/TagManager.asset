@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Cube
   - SaveObject
+  - ItemInfoPanel
   layers:
   - Default
   - TransparentFX

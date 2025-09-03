@@ -4,6 +4,7 @@ public struct Tag
 {
     public static readonly string Cube = "Cube";
     public static readonly string Save = "SaveObject";
+    public static readonly string ItemInfoPanel = "ItemInfoPanel";
 }
 
 public enum Languages

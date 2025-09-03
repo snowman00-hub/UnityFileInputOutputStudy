@@ -30,6 +30,13 @@ public class ItemTable : DataTable
     }
 
     private readonly Dictionary<string, ItemInfo> dictionary = new Dictionary<string, ItemInfo>();
+    public int ItemCount
+    {
+        get
+        {
+            return dictionary.Count;
+        }
+    }
 
     public override void Load(string fileName)
     {
@@ -59,6 +66,11 @@ public class ItemTable : DataTable
         }
 
         return dictionary[key];
+    }
+
+    public List<string> GetAllIds()
+    {
+        return new List<string>(dictionary.Keys);
     }
 }
 
