@@ -1,5 +1,5 @@
-﻿using TMPro;
 using UnityEngine;
+using TMPro;
 
 public class CSVTest2 : MonoBehaviour
 {
@@ -7,6 +7,7 @@ public class CSVTest2 : MonoBehaviour
 
     private void Start()
     {
-
+        var table = new ItemTable();
+        table.Load("ItemTable");
     }
 }

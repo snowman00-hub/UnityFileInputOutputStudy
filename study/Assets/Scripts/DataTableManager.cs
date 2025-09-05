@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public static class DataTableManager
+public static class DataTableManger
 {
-    private static readonly Dictionary<string, DataTable> tables = 
+    private static readonly Dictionary<string, DataTable> tables =
         new Dictionary<string, DataTable>();
 
-    static DataTableManager()
+    static DataTableManger()
     {
         Init();
     }
@@ -14,17 +15,18 @@ public static class DataTableManager
     private static void Init()
     {
 #if UNITY_EDITOR
-        foreach(var fileName in DataTableIds.StringTableIds)
+        foreach (var id in DataTableIds.StringTableIds)
         {
             var table = new StringTable();
-            table.Load(fileName);
-            tables.Add(fileName, table);
+            table.Load(id);
+            tables.Add(id, table);
         }
 #else
         var stringTable = new StringTable();
         stringTable.Load(DataTableIds.String);
         tables.Add(DataTableIds.String, stringTable);
 #endif
+
         var itemTable = new ItemTable();
         itemTable.Load(DataTableIds.Item);
         tables.Add(DataTableIds.Item, itemTable);
@@ -46,14 +48,13 @@ public static class DataTableManager
         }
     }
 
-    public static T Get<T>(string tableId) where T : DataTable
+    public static T Get<T>(string id) where T : DataTable
     {
-        if (!tables.ContainsKey(tableId))
+        if (!tables.ContainsKey(id))
         {
             Debug.LogError("테이블 없음");
             return null;
         }
-
-        return tables[tableId] as T;
+        return tables[id] as T;
     }
 }

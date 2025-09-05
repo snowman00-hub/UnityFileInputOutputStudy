@@ -1,17 +1,11 @@
 ﻿using UnityEngine;
-
-public struct Tag
-{
-    public static readonly string Cube = "Cube";
-    public static readonly string Save = "SaveObject";
-    public static readonly string ItemInfoPanel = "ItemInfoPanel";
-}
+using static Unity.VisualScripting.Icons;
 
 public enum Languages
 {
     Korean,
     English,
-    Japanese
+    Japanese,
 }
 
 public static class DataTableIds
@@ -22,13 +16,14 @@ public static class DataTableIds
         "StringTableEn",
         "StringTableJp",
     };
-
-    public static readonly string Item = "ItemTableKr";
-
     public static string String => StringTableIds[(int)Variables.Language];
+
+    public static readonly string Item = "ItemTable";
 }
+
 
 public static class Variables
 {
     public static Languages Language = Languages.Korean;
 }
+

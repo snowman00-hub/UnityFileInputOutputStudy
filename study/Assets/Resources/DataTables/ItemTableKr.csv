@@ -1,4 +1,0 @@
-Id,IconFilePath,ItemType,Value,Price,Description
-Sword,icon/Icon_Sword01,Weapon,10,100,검이다.
-Heart,icon/Icon_Heart02,Consumable,40,50,40 회
-Shield,icon/Icon_Shield01,Equipment,10,200,기본적인 방패.

@@ -1,96 +1,73 @@
-﻿using CsvHelper;
-using CsvHelper.Configuration;
-using CsvHelper.TypeConversion;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+﻿using System.Collections.Generic;
+using System.Linq;
+using CsvHelper;
+using Mono.Cecil;
 using UnityEngine;
 
-public enum ItemType
+public enum ItemTypes
 {
     Weapon,
+    Equip,
     Consumable,
-    Equipment
 }
 
-public class ItemInfo
+public class ItemData
 {
-    public string IconFilePath { get; set; }
-    public ItemType ItemType { get; set; }
-    public string Value { get; set; }
-    public string Price { get; set; }
-    public string Description { get; set; }
+    public string Id { get; set; }
+    public ItemTypes Type { get; set; }
+    public string Name { get; set; }
+    public string Desc { get; set; }
+    public int Value { get; set; }
+    public int Cost { get; set; }
+    public string Icon { get; set; }
+
+    public override string ToString()
+    {
+        return $"{Id} / {Type} / {Name} / {Desc} / {Value} / {Cost} / {Icon}";
+    }
+
+    public string StringName => DataTableManger.StringTable.Get(Name);
+    public string StringDesc => DataTableManger.StringTable.Get(Desc);
+    
+    public Sprite SpriteIcon => Resources.Load<Sprite>($"Icon/{Icon}");
 }
 
 public class ItemTable : DataTable
 {
-    public class Data
-    {
-        public string Id { get; set; }
-        public ItemInfo Info { get; set; }
-    }
+    private readonly Dictionary<string, ItemData> table = new Dictionary<string, ItemData>();
 
-    private readonly Dictionary<string, ItemInfo> dictionary = new Dictionary<string, ItemInfo>();
-    public int ItemCount
+    public override void Load(string filename)
     {
-        get
-        {
-            return dictionary.Count;
-        }
-    }
+        table.Clear();
 
-    public override void Load(string fileName)
-    {
-        dictionary.Clear();
-
-        var path = string.Format(FormatPath, fileName);
+        var path = string.Format(FormatPath, filename);
         var textAsset = Resources.Load<TextAsset>(path);
-        var list = LoadCSV<Data>(textAsset.text);
-
+        var list = LoadCSV<ItemData>(textAsset.text);
         foreach (var item in list)
         {
-            if (!dictionary.ContainsKey(item.Id))
+            if (!table.ContainsKey(item.Id))
             {
-                dictionary.Add(item.Id, item.Info);
+                table.Add(item.Id, item);
             }
             else
             {
-                Debug.LogError($"키 중복: {item.Id}");
+                Debug.LogError("아이템 아이디 중복!");
             }
         }
     }
-    public ItemInfo Get(string key)
+
+    public ItemData Get(string id)
     {
-        if (!dictionary.ContainsKey(key))
+        if (!table.ContainsKey(id))
         {
             return null;
         }
-
-        return dictionary[key];
+        return table[id];
     }
 
-    public List<string> GetAllIds()
+    public ItemData GetRandom()
     {
-        return new List<string>(dictionary.Keys);
-    }
-}
-
-public class ItemInfoMap : ClassMap<ItemInfo>
-{
-    public ItemInfoMap()
-    {
-        Map(m => m.IconFilePath).Name("IconFilePath");
-        Map(m => m.ItemType).Name("ItemType");
-        Map(m => m.Value).Name("Value");
-        Map(m => m.Price).Name("Price");
-        Map(m => m.Description).Name("Description");
-    }
-}
-
-public class ItemDataMap : ClassMap<ItemTable.Data>
-{
-    public ItemDataMap()
-    {
-        Map(m => m.Id).Name("Id");
-        References<ItemInfoMap>(m => m.Info);
+        var itemList = table.Values.ToList();
+        return itemList[Random.Range(0,itemList.Count)];
     }
 }

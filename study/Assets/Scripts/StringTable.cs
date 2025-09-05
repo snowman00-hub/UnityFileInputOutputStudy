@@ -1,9 +1,9 @@
-Ôªøusing System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StringTable : DataTable
 {
-    public static readonly string Unknown = "ÌÇ§ ÏóÜÏùå";
+    public static readonly string Unknown = "≈∞ æ¯¿Ω";
 
     public class Data
     {
@@ -13,14 +13,13 @@ public class StringTable : DataTable
 
     private readonly Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
-    public override void Load(string fileName)
+    public override void Load(string filename)
     {
         dictionary.Clear();
 
-        var path = string.Format(FormatPath, fileName);
+        var path = string.Format(FormatPath, filename);
         var textAsset = Resources.Load<TextAsset>(path);
         var list = LoadCSV<Data>(textAsset.text);
-
         foreach (var item in list)
         {
             if (!dictionary.ContainsKey(item.Id))
@@ -29,7 +28,7 @@ public class StringTable : DataTable
             }
             else
             {
-                Debug.LogError($"ÌÇ§ Ï§ëÎ≥µ: {item.Id}");
+                Debug.LogError($"≈∞ ¡ﬂ∫π: {item.Id}");
             }
         }
     }
@@ -40,7 +39,6 @@ public class StringTable : DataTable
         {
             return Unknown;
         }
-
         return dictionary[key];
     }
 }
