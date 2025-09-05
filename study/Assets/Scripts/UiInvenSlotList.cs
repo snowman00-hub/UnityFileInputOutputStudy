@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -90,8 +91,10 @@ public class UiInvenSlotList : MonoBehaviour
 
     public void Load()
     {
-        SaveLoadManager.Load();
-        currentItemList = SaveLoadManager.Data.saveItemList;
+        if (SaveLoadManager.Load())
+        {
+            currentItemList = SaveLoadManager.Data.saveItemList;
+        }
         UpdateSlots(currentItemList);
         onUpdateSlots.Invoke();
     }

@@ -48,8 +48,10 @@ public class SaveDataV2 : SaveData
     }
 }
 
-public class SaveDataV3 : SaveDataV2
+public class SaveDataV3 : SaveData
 {
+    public string Name { get; set; } = string.Empty;
+    public int Gold;
     public List<SaveItemData> saveItemList = new List<SaveItemData>();
 
     public SaveDataV3()

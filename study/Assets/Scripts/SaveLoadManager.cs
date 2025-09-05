@@ -7,7 +7,7 @@ public class SaveLoadManager
 {
     public static int SaveDataVersion { get; } = 3;
 
-    public static SaveDataVC Data { get; set;}
+    public static SaveDataVC Data { get; set;} = new SaveDataVC();
 
     private static readonly string[] SaveFilename =
     {
