@@ -40,6 +40,11 @@ public class SaveLoadManager
             var path = Path.Combine(SaveDirectory, SaveFilename[slot]);
             var json = JsonConvert.SerializeObject(Data, settings);
             File.WriteAllText(path, json);
+
+            // 바이트 배열로 바꾸고 압축하고
+            // 암호화(s 알고리즘, 블록 알고리즘) 후에
+            // 바이너리 모드로 쓰기
+
             return true;
         }
         catch
