@@ -8,6 +8,13 @@ public enum Languages
     Japanese,
 }
 
+public enum Difficulty
+{
+    Easy,
+    Normal,
+    Hard,
+}
+
 public static class DataTableIds
 {
     public static readonly string[] StringTableIds =

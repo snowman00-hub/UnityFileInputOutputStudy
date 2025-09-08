@@ -6,7 +6,7 @@ public class SaveLoadTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SaveLoadManager.Data = new SaveDataV3();
+            SaveLoadManager.Data = new SaveDataV4();
             SaveLoadManager.Data.Name = "TEST";
             SaveLoadManager.Save();
         }

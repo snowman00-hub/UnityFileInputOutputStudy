@@ -31,7 +31,7 @@ public class StartWindow : GenericWindow
 
     public void OnClickNewGame()
     {
-        manager.Open(Windows.GameOver);
+        manager.Open(Windows.Difficulty);
     }
 
     public void OnClickOption()

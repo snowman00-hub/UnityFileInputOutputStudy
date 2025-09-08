@@ -39,7 +39,7 @@ public class GameOverWindow : GenericWindow
 
     public void OnClickNextButton()
     {
-        manager.Open(Windows.Start);
+        manager.Open(Windows.KeyBoard);
     }
 
     public IEnumerator CoWriteStats()
