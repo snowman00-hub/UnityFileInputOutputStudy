@@ -23,8 +23,8 @@ public class WindowManager : MonoBehaviour
 
     public void Open(Windows id)
     {
-
+        windows[(int)CurrentWindow].Close();
+        CurrentWindow = id;
+        windows[(int)CurrentWindow].Open();
     }
-
-
 }
