@@ -9,6 +9,11 @@ public class SaveLoadManager
 
     public static SaveDataVC Data { get; set;} = new SaveDataVC();
 
+    static SaveLoadManager()
+    {
+        Load();
+    }
+
     private static readonly string[] SaveFilename =
     {
         "SaveAuto.json",

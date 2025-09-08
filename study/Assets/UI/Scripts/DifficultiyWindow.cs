@@ -24,10 +24,7 @@ public class DifficultiyWindow : GenericWindow
 
     public override void Open()
     {
-        if (SaveLoadManager.Load())
-        {
-            difficulty = SaveLoadManager.Data.Difficulty;
-        }
+        difficulty = SaveLoadManager.Data.Difficulty;
 
         base.Open();
         toggles[(int)difficulty].isOn = true;

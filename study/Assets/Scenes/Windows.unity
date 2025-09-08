@@ -472,7 +472,7 @@ MonoBehaviour:
   - {fileID: 1767017847}
   - {fileID: 1715606340}
   - {fileID: 1419511318}
-  defaultWindow: 3
+  defaultWindow: 0
 --- !u!1001 &257992519
 PrefabInstance:
   m_ObjectHideFlags: 0

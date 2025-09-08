@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using CsvHelper;
 using System.IO;
 using System.Globalization;
@@ -25,5 +25,4 @@ public class CSVTest1 : MonoBehaviour
             }
         }
     }
-
 }
